@@ -11,33 +11,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
     title: 'Sandwich Shop App',
-    home: Scaffold(
-      appBar: AppBar(
-        title: const Text('My Sandwich Shop'),
-        backgroundColor: Colors.orange,
-        ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          OrderItemDisplay(5, "footlong"),
-          Row(
-            children: [
-              ElevatedButton
-              (onPressed: () => print("Add Button Pressed"),
-               child: const Text("Add")),
-              const SizedBox(width: 16),
-              ElevatedButton
-              (onPressed: () => print("Remove Button Pressed"),
-               child: const Text("Remove")),
-            ],
-          )
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-    ),
-  ));
+    home: OrderScreen(maxQuantity: 5)
+    );
   }
 }
 
@@ -57,7 +32,35 @@ class _OrderScreenState extends State<OrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sandwich Counter'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            OrderItemDisplay(
+              _quantity,
+              'Footlong',
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => print('Add button pressed!'),
+                  child: const Text('Add'),
+                ),
+                ElevatedButton(
+                  onPressed: () => print('Remove button pressed!'),
+                  child: const Text('Remove'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
 }
